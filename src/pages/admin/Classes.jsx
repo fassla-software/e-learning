@@ -20,7 +20,7 @@ const Classes = () => {
             {/* Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 {/* Right Column - Create New Class Form */}
-                <div className="lg:col-span-4 px-8">
+                <div className="lg:col-span-4 lg:px-8">
                     <div className="bg-white rounded-3xl p-6 shadow-sm ">
                         <FaChalkboard className="text-2xl text-blue-600 mb-4" />
                         <h2 className="font-bold mb-2 text-neutral-800" style={{ fontSize: '2rem' }}>إنشاء فصل جديد</h2>

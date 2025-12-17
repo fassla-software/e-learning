@@ -2,9 +2,35 @@ import { useParams } from 'react-router-dom';
 import { FiMail, FiPhone, FiTrendingUp, FiBook, FiAward } from 'react-icons/fi';
 import { PiShootingStar } from "react-icons/pi";
 import { LiaNewspaperSolid } from "react-icons/lia";
+import ProgressBar from '../../components/ProgressBar';
+import StatsCards from '../../components/StatsCards';
 
 const StudentInfo = () => {
     const { id } = useParams();
+
+    const statsData = [
+        {
+            icon: PiShootingStar,
+            iconBg: 'bg-emerald-100',
+            iconColor: 'text-emerald-600',
+            label: 'نسبة الحضور',
+            value: '85%'
+        },
+        {
+            icon: LiaNewspaperSolid,
+            iconBg: 'bg-indigo-100',
+            iconColor: 'text-indigo-600',
+            label: 'متوسط الدرجات',
+            value: '92%'
+        },
+        {
+            icon: FiAward,
+            iconBg: 'bg-sky-100',
+            iconColor: 'text-sky-600',
+            label: 'الترتيب في الصف',
+            value: '4/30'
+        }
+    ];
 
     return (
         <div className="space-y-8 p-4">
@@ -17,7 +43,7 @@ const StudentInfo = () => {
                         className="w-16 h-16 rounded-full object-cover"
                     />
                     <div>
-                        <h3 className="font-bold text-neutral-800 text-5xl">
+                        <h3 className="font-bold text-neutral-800 text-2xl md:text-3xl lg:text-5xl">
                             أحمد محمد
                         </h3>
                     </div>
@@ -31,41 +57,13 @@ const StudentInfo = () => {
                     </button>
                 </div>
             </div>
-            <p className='text-neutral-800 font-bold text-2xl'>نظرة عامة على الطالب</p>
-
-            {/* Stat Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-3xl p-4 shadow-sm flex items-center gap-4">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                        <PiShootingStar className="text-emerald-600 text-2xl" />
-                    </div>
-                    <div>
-                        <span className="text-neutral-700 font-medium block">نسبة الحضور</span>
-                        <p className="text-3xl font-bold text-neutral-800">85%</p>
-                    </div>
-                </div>
-                <div className="bg-white rounded-3xl p-4 shadow-sm flex items-center gap-4">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                        <LiaNewspaperSolid className="text-indigo-600 text-2xl" />
-                    </div>
-                    <div>
-                        <span className="text-neutral-700 font-medium block">متوسط الدرجات</span>
-                        <p className="text-3xl font-bold text-neutral-800">92%</p>
-                    </div>
-                </div>
-                <div className="bg-white rounded-3xl p-4 shadow-sm flex items-center gap-4">
-                    <div className="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center">
-                        <FiAward className="text-sky-600 text-lg" />
-                    </div>
-                    <div>
-                        <span className="text-neutral-700 font-medium block">الترتيب في الصف</span>
-                        <p className="text-3xl font-bold text-neutral-800">4/30</p>
-                    </div>
-                </div>
-            </div>
+            <StatsCards 
+                title="نظرة عامة على الطالب" 
+                stats={statsData} 
+            />
 
             {/* Grid of Three Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 md:px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2 md:px-4">
                 {/* first section */}
                 <div className="bg-white rounded-3xl px-4 md:px-12 pb-2 md:pb-16 pt-6 shadow-sm min-h-96">
                     <h3 className='font-bold text-black text-2xl mb-4'>البثوث المباشرة</h3>
@@ -129,8 +127,8 @@ const StudentInfo = () => {
                                 </div>
                                 <div className="text-center">
                                     <p className="text-base font-bold mt-1">92/100</p>
-                                    <div className="w-16 bg-slate-400 rounded-full h-2 mt-2">
-                                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                                    <div className="mt-2">
+                                        <ProgressBar percentage={92} showPercentage={false} />
                                     </div>
                                 </div>
                             </div>
@@ -144,8 +142,8 @@ const StudentInfo = () => {
                                 </div>
                                 <div className="text-center">
                                     <p className="text-base font-bold mt-1">78/100</p>
-                                    <div className="w-16 bg-slate-400 rounded-full h-2 mt-2">
-                                        <div className="bg-green-300 h-2 rounded-full" style={{ width: '78%' }}></div>
+                                    <div className="mt-2">
+                                        <ProgressBar percentage={78} color="bg-green-300" showPercentage={false} />
                                     </div>
                                 </div>
                             </div>
@@ -159,8 +157,8 @@ const StudentInfo = () => {
                                 </div>
                                 <div className="text-center">
                                     <p className="text-base font-bold mt-1">85/100</p>
-                                    <div className="w-16 bg-slate-400 rounded-full h-2 mt-2">
-                                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                                    <div className="mt-2">
+                                        <ProgressBar percentage={85} showPercentage={false} />
                                     </div>
                                 </div>
                             </div>

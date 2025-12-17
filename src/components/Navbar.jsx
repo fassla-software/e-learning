@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FiHome, FiUsers, FiBook, FiSettings, FiChevronDown, FiBell } from 'react-icons/fi';
+import { FiHome, FiUsers, FiBook, FiSettings, FiChevronDown, FiBell, FiFileText } from 'react-icons/fi';
 import { FaChalkboard } from "react-icons/fa";
 import { FaUserGraduate } from "react-icons/fa6";
+import { PiVideoLight } from "react-icons/pi";
+import { IoBookOutline } from "react-icons/io5";
+import { HiMiniChevronUpDown } from "react-icons/hi2";
 
 import logo from '../assets/logo.svg';
 const Navbar = ({ role = 'student' }) => {
@@ -18,6 +21,9 @@ const Navbar = ({ role = 'student' }) => {
                     { name: 'الفصول', path: '/admin/classes', icon: FaChalkboard },
                     { name: 'الطلاب', path: '/admin/students', icon: FiUsers },
                     { name: 'المعلمون', path: '/admin/teachers', icon: FaUserGraduate },
+                    { name: 'المناهج', path: '/admin/curricula', icon: IoBookOutline },
+                    { name: 'الاختبارات', path: '/admin/exams', icon: FiFileText },
+                    { name: 'البثوث', path: '/admin/broadcasts', icon: PiVideoLight },
                 ];
             case 'teacher':
                 return [
@@ -71,7 +77,7 @@ const Navbar = ({ role = 'student' }) => {
                             >
                                 <CurrentIcon className="w-4 h-4" />
                                 <span className="text-sm font-medium">{currentRoute.name}</span>
-                                <FiChevronDown className={`w-4 h-4 transition-transform ${isNavOpen ? 'rotate-180' : ''}`} />
+                                <HiMiniChevronUpDown className={`w-4 h-4 transition-transform ${isNavOpen ? 'rotate-180' : ''}`} />
                             </button>
 
                             {/* Dropdown Menu */}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StatsSection from '../../components/admin/StatsSection';
 import Card from '../../components/Card';
 import { PiVideoLight } from "react-icons/pi";
@@ -12,6 +13,7 @@ import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('الواجبات');
+    const navigate = useNavigate();
 
     return (
         <div className="space-y-6">            
@@ -25,7 +27,7 @@ const AdminDashboard = () => {
                         <PiVideoLight className="text-xl" />
                     </div>
 
-                    <Card className="bg-white rounded-3xl">
+                    <Card className="bg-white rounded-3xl shadow-lg border border-gray-200">
                         <div className="flex items-center justify-between mb-2">
                             <h3 style={{fontSize: '24px'}} className="font-bold">شرح الرياضيات - المشتقات</h3>
                             <FaExternalLinkAlt className="text-gray-500" />
@@ -55,7 +57,10 @@ const AdminDashboard = () => {
                             </div>
                         </div>
                     </Card>
-                    <div className="card-dashed-container mt-4">
+                    <div 
+                        className="card-dashed-container mt-4 cursor-pointer"
+                        onClick={() => navigate('/admin/schedule-broadcast')}
+                    >
                         <svg className="card-dashed-border" width="100%" height="100%">
                             <rect
                                 x="2"
@@ -106,10 +111,10 @@ const AdminDashboard = () => {
                         </button>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {activeTab === 'الواجبات' ? (
                             <>
-                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl'>
+                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl shadow-md border border-gray-200'>
                                     <div className="flex justify-between items-center">
                                         <p className="text-neutral-600">2510281001</p>
                                         <div className="flex gap-2">
@@ -123,15 +128,15 @@ const AdminDashboard = () => {
                                     </div>
                                     <p className='my-4 text-neutral-800' style={{fontSize: '32px', fontWeight: 'bold'}}>مشتقة الدوال</p>
                                     <p className="text-neutral-600"><LuNotebookText className="inline-block mr-2" /> تفاصيل الواجب</p>
-                                    <p className='text-neutral-800' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
-                                    <button 
-                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2 mt-4 hover:bg-orange-200'
+                                    <p className='text-neutral-800 mb-4' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
+                                    <span 
+                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2 mt-4'
                                         style={{ fontSize: '12px' }}
                                     >
                                         متبقي 3يوم
-                                    </button>
+                                    </span>
                                 </Card>
-                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl'>
+                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl shadow-md border border-gray-200'>
                                     <div className="flex justify-between items-center">
                                         <p className="text-neutral-600">2510281001</p>
                                         <div className="flex gap-2">
@@ -145,15 +150,15 @@ const AdminDashboard = () => {
                                     </div>
                                     <p className='my-4 text-neutral-800' style={{fontSize: '32px', fontWeight: 'bold'}}>مشتقة الدوال</p>
                                     <p className="text-neutral-600"><LuNotebookText className="inline-block mr-2" /> تفاصيل الواجب</p>
-                                    <p className='text-neutral-800' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
-                                    <button 
-                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2 mt-4 hover:bg-orange-200'
+                                    <p className='text-neutral-800 mb-4' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
+                                    <span 
+                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2 mt-4'
                                         style={{ fontSize: '12px' }}
                                     >
                                         متبقي 3يوم
-                                    </button>
+                                    </span>
                                 </Card>
-                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl'>
+                                <Card className='bg-white d-flex flex-col justify-center align-start gap-2 rounded-3xl shadow-md border border-gray-200'>
                                     <div className="flex justify-between items-center">
                                         <p className="text-neutral-600">2510281001</p>
                                         <div className="flex gap-2">
@@ -167,25 +172,25 @@ const AdminDashboard = () => {
                                     </div>
                                     <p className='my-4 text-neutral-800' style={{fontSize: '32px', fontWeight: 'bold'}}>مشتقة الدوال</p>
                                     <p className="text-neutral-600"><LuNotebookText className="inline-block mr-2" /> تفاصيل الواجب</p>
-                                    <p className='text-neutral-800' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
-                                    <button 
-                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2 mt-4 hover:bg-orange-200'
+                                    <p className='text-neutral-800 mb-4' style={{ fontSize: '20px', fontWeight: 'bold' }}>السؤال الأول صفحة 27</p>
+                                    <span 
+                                        className='bg-orange-100 text-orange-600 rounded-full px-4 py-2'
                                         style={{ fontSize: '12px' }}
                                     >
                                         متبقي 3يوم
-                                    </button>
+                                    </span>
                                 </Card>
                                 
                             </>
                         ) : (
                             <>
-                                <Card className='bg-white'>
+                                <Card className='bg-white shadow-md border border-gray-200 rounded-lg'>
                                     <p>اختبار الرياضيات</p>
                                 </Card>
-                                <Card className='bg-white'>
+                                <Card className='bg-white shadow-md border border-gray-200 rounded-lg'>
                                     <p>اختبار الفيزياء</p>
                                 </Card>
-                                <Card className='bg-white'>
+                                <Card className='bg-white shadow-md border border-gray-200 rounded-lg'>
                                     <p>اختبار الكيمياء</p>
                                 </Card>
                             </>

@@ -1,28 +1,20 @@
-import { FiSearch, FiChevronDown, FiPlus, FiBook, FiEdit, FiExternalLink } from 'react-icons/fi';
+import { FiChevronDown, FiPlus, FiBook, FiEdit, FiExternalLink } from 'react-icons/fi';
 import { PiCaretUpDown } from 'react-icons/pi';
 import { FiUsers } from 'react-icons/fi';
 import { GoPersonAdd } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import SearchInput from '../../components/SearchInput';
 
 const Students = () => {
     return (
         <div className="space-y-6 p-3">
             {/* Search Input */}
-            <div className="">
-                <div className="relative">
-                    <FiSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                        type="text"
-                        placeholder="بحث بإستخدام اسم الطالب"
-                        className="w-full bg-white rounded-full py-6 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-            </div>
+            <SearchInput placeholder="بحث بإستخدام اسم الطالب" />
             
             {/* Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 {/* Right Column - Create New Student Form */}
-                <div className="lg:col-span-4 px-8">
+                <div className="lg:col-span-4 lg:px-8">
                     <div className="bg-white rounded-3xl p-6 shadow-sm">
                         <GoPersonAdd className="text-2xl text-blue-600 mb-4" />
                         <h2 className="font-bold mb-2 text-neutral-800" style={{ fontSize: '2rem' }}>إضافة طالب جديد</h2>

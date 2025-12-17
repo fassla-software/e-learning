@@ -1,8 +1,29 @@
 import { FiMail, FiPhone } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import RoundedTable from '../../components/RoundedTable';
+import ProgressBar from '../../components/ProgressBar';
+import StarRating from '../../components/StarRating';
+import { IoIosArrowBack } from "react-icons/io";
 
 
 const TeacherInfo = () => {
+    const navigate = useNavigate();
+    
+    const thStyle = {
+        backgroundColor: '#E5E5E5',
+        padding: '10px',
+        borderBottom: '1px solid #A8A8A8',
+        fontWeight: '600',
+    };
+
+
+    const tdStyle = {
+        backgroundColor: '#F0F0F0',
+        padding: '10px',
+        borderBottom: '1px solid #A8A8A8',
+    };
+
     return (
         <div className="space-y-8 p-4">
             {/* Teacher Header Card */}
@@ -14,13 +35,13 @@ const TeacherInfo = () => {
                         className="w-16 h-16 rounded-full object-cover"
                     />
                     <div>
-                        <h3 className="font-bold text-neutral-800 text-5xl">
+                        <h3 className="font-bold text-neutral-800 text-2xl md:text-3xl lg:text-5xl">
                             أحمد محمد
                         </h3>
-                        <p className="font-semibold text-xl text-sky-600 ">
+                        <p className="font-semibold text-sm md:text-lg lg:text-xl text-sky-600">
                             معلم رياضيات
                         </p>
-                        <p className="text-black text-xl ">
+                        <p className="text-black text-sm md:text-lg lg:text-xl">
                             3 صفوف
                         </p>
                     </div>
@@ -34,15 +55,18 @@ const TeacherInfo = () => {
                             <FiMail className="w-4 h-4 text-neutral-600" />
                         </button>
                     </div>
-                    <button className='text-xl font-semibold bg-blue-400 rounded-full px-4 py-2 text-black hover:bg-blue-500 transition-colors me-16 mt-8'>
+                    <button 
+                        onClick={() => navigate('/admin/edit-teacher-permissions')}
+                        className='text-sm font-semibold bg-blue-400 rounded-full px-3 py-1 text-black hover:bg-blue-500 transition-colors me-16 mt-8'
+                    >
                         تعديل الصلاحيات
                     </button>
                 </div>
             </div>
 
             {/* Stats Section */}
-            <div className="bg-white p-6 rounded-3xl shadow-lg">
-                <div className="grid grid-cols-4 gap-6">
+            <div className="bg-white p-6 rounded-3xl shadow-md">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="text-center">
                         <h4 className="mb-2 font-semibold" style={{ color: '#000000B0', fontSize: '28px' }}>عدد الطلاب</h4>
                         <p className="font-bold text-black" style={{ fontSize: '2rem' }}>128</p>
@@ -69,103 +93,82 @@ const TeacherInfo = () => {
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid grid-cols-12 gap-6">
-                {/* Left Column - 8/12 */}
-                <div className="col-span-8">
-                    <div className="bg-white p-6 rounded-3xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* right Column - 8/12 */}
+                {/* tables section */}
+                <div className="lg:col-span-8">
+                    <div className="bg-white p-4 lg:p-12 rounded-3xl shadow-md">
                         <h3 className="font-bold mb-4" style={{ fontSize: '28px' }}>البثوث المباشرة</h3>
-                        <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, borderRadius: '10px', overflow: 'hidden', border: '2px solid #a8a8a8ff' }}>
-                            <thead>
-                                <tr>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>عنوان البث</th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>المادة</th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>التاريخ </th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>المدة</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>رياضيات الأساسية</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>رياضيات</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-01</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>1 ساعة</td>
-                                </tr>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>فيزياء متقدمة</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>فيزياء</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-02</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>45 دقيقة</td>
-                                </tr>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>كيمياء عضوية</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>كيمياء</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-03</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2 ساعة</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <RoundedTable
+                            headers={['عنوان البث', 'المادة', 'التاريخ', 'المدة']}
+                            data={[
+                                ['رياضيات الأساسية', 'رياضيات', '2023-10-01', '1 ساعة'],
+                                ['فيزياء متقدمة', 'فيزياء', '2023-10-02', '45 دقيقة'],
+                                ['كيمياء عضوية', 'كيمياء', '2023-10-03', '2 ساعة']
+                            ]}
+                        />
+
                     </div>
-                    <div className="bg-white p-6 rounded-3xl mt-8">
+                    <div className="bg-white p-4 lg:p-12 rounded-3xl mt-8 shadow-md">
                         <h3 className="font-bold mb-4" style={{ fontSize: '28px' }}>الواجبات</h3>
-                        <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, borderRadius: '10px', overflow: 'hidden', border: '2px solid #a8a8a8ff' }}>
-                            <thead>
-                                <tr>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>عنوان الواجب</th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>المادة</th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>التاريخ </th>
-                                    <th style={{ backgroundColor: '#D9D9D9', borderTop: '2px solid #a8a8a8ff', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>نسبة التسليم</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>رياضيات الأساسية</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>رياضيات</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-01</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <span>85%</span>
-                                            <div className="w-16 bg-slate-400 rounded-full h-2">
-                                                <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>فيزياء متقدمة</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>فيزياء</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-02</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderBottom: '2px solid #a8a8a8ff', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <span>78%</span>
-                                            <div className="w-16 bg-slate-400 rounded-full h-2">
-                                                <div className="bg-green-300 h-2 rounded-full" style={{ width: '78%' }}></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>كيمياء عضوية</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>كيمياء</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>2023-10-03</td>
-                                    <td style={{ backgroundColor: '#E9E9E9', borderRight: '2px solid #a8a8a8ff', padding: '8px' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <span>92%</span>
-                                            <div className="w-16 bg-slate-400 rounded-full h-2">
-                                                <div className="bg-green-500 h-2 rounded-full" style={{ width: '92%' }}></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <RoundedTable
+                            headers={['عنوان الواجب', 'المادة', 'التاريخ', 'نسبة التسليم']}
+                            data={[
+                                ['رياضيات الأساسية', 'رياضيات', '2023-10-01', <ProgressBar percentage={85} />],
+                                ['فيزياء متقدمة', 'فيزياء', '2023-10-02', <ProgressBar percentage={78} color="bg-green-300" />],
+                                ['كيمياء عضوية', 'كيمياء', '2023-10-03', <ProgressBar percentage={92} />]
+                            ]}
+                        />
+
                     </div>
                 </div>
 
-                {/* Right Column - 4/12 */}
-                <div className="col-span-4">
-                    <div className="bg-white p-6 rounded-3xl">
-                        <h3 className="font-bold mb-4" style={{ fontSize: '32px' }}>المواد والصفوف</h3>
-                        <p className="text-gray-600">هذا نص مؤقت للمحتوى الجانبي...</p>
+                {/* left Column - 4/12 */}
+                <div className="lg:col-span-4">
+
+                    {/* tables and classes section */}
+                    <div className="bg-white p-6 rounded-3xl space-y-4">
+                        <h3 className="font-bold mb-8" style={{ fontSize: '2rem' }}>المواد والصفوف</h3>
+                        <div className='rounded-2xl py-3 px-4 flex items-center justify-between font-semibold' style={{ backgroundColor: '#F5F5F5' }}>
+                            <div className=''>
+                                <p className='text-2xl mb-1'>رياضيات - صف 2/1</p>
+                                <p className='text-xl'>28 طالب</p>
+                            </div>
+                            <IoIosArrowBack className='text-xl font-bold' style={{ color: '#969696' }} />
+                        </div>
+                        <div className='rounded-2xl py-3 px-4 flex items-center justify-between font-semibold' style={{ backgroundColor: '#F5F5F5' }}>
+                            <div className=''>
+                                <p className='text-2xl mb-1'>رياضيات - صف 2/1</p>
+                                <p className='text-xl'>28 طالب</p>
+                            </div>
+                            <IoIosArrowBack className='text-xl font-bold' style={{ color: '#969696' }} />
+                        </div>
+                        <div className='rounded-2xl py-3 px-4 flex items-center justify-between font-semibold' style={{ backgroundColor: '#F5F5F5' }}>
+                            <div className=''>
+                                <p className='text-2xl mb-1'>رياضيات - صف 2/1</p>
+                                <p className='text-xl'>28 طالب</p>
+                            </div>
+                            <IoIosArrowBack className='text-xl font-bold' style={{ color: '#969696' }} />
+                        </div>
+                    </div>
+
+                    {/* rating section */}
+                    <div className="bg-white p-6 rounded-3xl mt-6">
+                        <h3 className="font-bold mb-2" style={{ fontSize: '28px' }}>تقييم الإدارة</h3>
+                        <div className="mb-4">
+                            <h3 className="font-bold mb-1 text-start text-xl">تقييم الإدارة</h3>
+                            <div className="flex items-center gap-2">
+                                <StarRating filledStars={5} />
+                                <span className="text-lg font-semibold mr-2">(ممتاز)</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 className="font-bold mb-1 text-start text-xl">تقييم الطلاب</h3>
+                            <div className="flex items-center gap-2">
+                                <StarRating filledStars={4} />
+                                <span className="text-lg font-semibold mr-2">(جيد جداً)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
