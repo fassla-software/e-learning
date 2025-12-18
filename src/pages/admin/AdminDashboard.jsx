@@ -20,7 +20,7 @@ const AdminDashboard = () => {
             <StatsSection />
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                {/* Left Section - البثوث */}
+                {/* Right Section - البثوث */}
                 <div className="lg:col-span-3">
                     <div className="flex justify-between gap-2 mb-4">
                         <h2 style={{fontSize: '24px'}} className="font-bold">البثوث</h2>
@@ -85,7 +85,7 @@ const AdminDashboard = () => {
                     </div>
                 </div>
 
-                {/* Right Section - Cards Grid */}
+                {/* Left Section - Cards Grid */}
                 <div className="lg:col-span-8">
                     {/* Tabs */}
                     <div className="flex gap-2 mb-4">

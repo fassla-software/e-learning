@@ -15,7 +15,7 @@ const StatsCards = ({ title, titleIcon: TitleIcon, stats }) => {
                             <div className={`w-10 h-10 ${stat.iconBg} rounded-full flex items-center justify-center`}>
                                 <Icon className={`${stat.iconColor} text-2xl`} />
                             </div>
-                            <div>
+                            <div className="flex-1 min-w-0">
                                 <span className="text-neutral-800 text-base block">{stat.label}</span>
                                 <p className="text-2xl font-bold text-neutral-800">{stat.value}</p>
                             </div>

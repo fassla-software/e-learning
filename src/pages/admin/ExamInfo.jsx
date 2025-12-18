@@ -65,7 +65,7 @@ const ExamInfo = () => {
                                 <PiPencilSimpleLight/>
                             </div>
                             <p className='text-base text-neutral-800'>الخميس، 30، أكتوبر 2025. 9:15 - 9:45 ص <span className='text-orange-600'>(قيد المراجعة)</span></p>
-                            <ProgressBar color='bg-white' showPercentage={false} percentage={90} width='w-full' height="h-3"/>
+                            <ProgressBar color='bg-white' showPercentage={true} percentage={90} width='w-full' height="h-3"/>
                         </div>
                         <div className="flex gap-2 w-50">
                             <button className="flex gap-2 items-center bg-emerald-100 hover:bg-emerald-300 text-neutral-600 rounded-full py-2 px-4 text-base ">
