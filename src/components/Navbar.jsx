@@ -3,13 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { FiHome, FiUsers, FiBook, FiSettings, FiChevronDown, FiBell, FiFileText } from 'react-icons/fi';
 import { VscChecklist } from 'react-icons/vsc';
 import { FaUserCheck } from 'react-icons/fa';
-import { PiExam } from 'react-icons/pi';
+import { PiExam, PiVideoLight, PiUserCirclePlus, PiChatTeardropDots, PiFireLight } from 'react-icons/pi';
 import { FaChalkboard } from "react-icons/fa";
 import { FaUserGraduate } from "react-icons/fa6";
-import { PiVideoLight } from "react-icons/pi";
 import { IoBookOutline } from "react-icons/io5";
 import { HiMiniChevronUpDown } from "react-icons/hi2";
-import ProfileModal from './ProfileModal';
+import ProfileModal from './teacher/ProfileModal';
+import StudentProfileModal from './student/StudentProfileModal';
 
 import logo from '../assets/logo.svg';
 const Navbar = ({ role = 'student' }) => {
@@ -37,8 +37,8 @@ const Navbar = ({ role = 'student' }) => {
 
     // Mock user data - replace with actual user data
     const user = {
-        name: "أحمد محمد",
-        email: "ahmed@example.com",
+        name: role === 'teacher' ? "أحمد محمد" : "ياسين علي",
+        email: role === 'teacher' ? "ahmed@example.com" : "yassin@example.com",
         profileImage: ""
     };
 
@@ -58,19 +58,16 @@ const Navbar = ({ role = 'student' }) => {
             case 'teacher':
                 return [
                     { name: 'لوحة التحكم', path: '/teacher', icon: FiHome },
-                    { name: 'My Courses', path: '/teacher/courses', icon: FiBook },
-                    { name: 'Students', path: '/teacher/students', icon: FiUsers },
                     { name: 'الواجبات', path: '/teacher/assignments', icon: VscChecklist },
                     { name: 'الاختبارات', path: '/teacher/exams', icon: PiExam },
+                    { name: 'البثوث', path: '/teacher/broadcasts', icon: PiVideoLight },
                     { name: 'الحضور والغياب', path: '/teacher/attendance', icon: FaUserCheck },
-                    { name: 'Settings', path: '/teacher/settings', icon: FiSettings },
                 ];
             case 'student':
             default:
                 return [
-                    { name: 'Dashboard', path: '/student', icon: FiHome },
-                    { name: 'My Courses', path: '/student/courses', icon: FiBook },
-                    { name: 'Settings', path: '/student/settings', icon: FiSettings },
+                    { name: 'لوحة التحكم', path: '/student', icon: FiHome },
+                    { name: 'الأهداف', path: '/student/goals', icon: FiSettings },
                 ];
         }
     };
@@ -90,14 +87,14 @@ const Navbar = ({ role = 'student' }) => {
         <nav className="w-full border-b-2 border-blue-200 ">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    
+
                     {/* Center/Right Section */}
                     <div className="flex items-center gap-4">
-                        
+
                         {/* Logo - Far Right */}
                         <div className="relative">
-                            {role === 'teacher' ? (
-                                <button 
+                            {(role === 'teacher' || role === 'student') ? (
+                                <button
                                     ref={logoRef}
                                     onClick={() => setIsProfileModalOpen(!isProfileModalOpen)}
                                     className="flex items-center gap-2 group hover:opacity-80 transition-opacity"
@@ -109,17 +106,26 @@ const Navbar = ({ role = 'student' }) => {
                                     <img src={logo} alt="Logo" className="h-8 w-8" />
                                 </Link>
                             )}
-                            
+
                             {/* Profile Modal */}
                             {role === 'teacher' && (
-                                <ProfileModal 
-                                    isOpen={isProfileModalOpen} 
+                                <ProfileModal
+                                    isOpen={isProfileModalOpen}
+                                    onClose={() => setIsProfileModalOpen(false)}
+                                    user={user}
+                                    triggerRef={logoRef}
+                                />
+                            )}
+                            {role === 'student' && (
+                                <StudentProfileModal
+                                    isOpen={isProfileModalOpen}
                                     onClose={() => setIsProfileModalOpen(false)}
                                     user={user}
                                     triggerRef={logoRef}
                                 />
                             )}
                         </div>
+
 
                         {/* Vertical Divider */}
                         <div className="h-8 w-1 bg-gray-300"></div>
@@ -160,16 +166,36 @@ const Navbar = ({ role = 'student' }) => {
                         </div>
 
                     </div>
-                    
-                    {/* Bell Icon - Far Left */}
-                    <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
-                        <FiBell className="w-5 h-5 text-gray-700" />
-                        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
+
+                    {/* Left Section - Notifications & Actions */}
+                    <div className="flex items-center gap-2">
+                        {role === 'student' && (
+                            <>
+                                <div className="flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full">
+                                    <PiFireLight className="w-5 h-5" />
+                                    <span className="text-sm font-bold">3 أيام</span>
+                                </div>
+                                {location.pathname === '/student' && (
+                                    <>
+                                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                            <PiChatTeardropDots className="w-6 h-6 text-gray-700" />
+                                        </button>
+                                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                            <PiUserCirclePlus className="w-6 h-6 text-gray-700" />
+                                        </button>
+                                    </>
+                                )}
+                            </>
+                        )}
+                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
+                            <FiBell className="w-5 h-5 text-gray-700" />
+                            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                    </div>
 
                 </div>
             </div>
-            
+
 
         </nav>
     );

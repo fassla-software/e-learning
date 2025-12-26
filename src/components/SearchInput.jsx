@@ -7,7 +7,7 @@ const SearchInput = ({ placeholder = "بحث..." , height='h-20', searchSize='8'
             <input
                 type="text"
                 placeholder={placeholder}
-                className={`w-full ${height} bg-white rounded-full py-6 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent placeholder:text-sm sm:placeholder:text-xl`}
+                className={`w-full ${height} bg-white rounded-full py-6 pr-14 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent placeholder:text-sm sm:placeholder:text-xl`}
             />
         </div>
     );
