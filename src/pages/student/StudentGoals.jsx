@@ -124,7 +124,7 @@ const StudentGoals = () => {
                                             type="checkbox"
                                             checked={goal.status === 'completed'}
                                             onChange={() => toggleGoalStatus(goal.id)}
-                                            className="w-5 h-5 rounded border-1 border-neutral-800 bg-blue-200 checked:bg-blue-600 checked:border-neutral-600 appearance-none cursor-pointer relative transition-colors after:content-[''] after:absolute after:hidden checked:after:block after:left-[5px] after:top-[1px] after:w-[6px] after:h-[10px] after:border-white after:border-b-2 after:border-r-2 after:rotate-45"
+                                            className="w-3 h-3 rounded border-1 border-neutral-800 bg-blue-200 checked:bg-blue-600 checked:border-neutral-600 appearance-none cursor-pointer relative transition-colors after:content-[''] after:absolute after:hidden checked:after:block after:left-[5px] after:top-[1px] after:w-[6px] after:h-[10px] after:border-white after:border-b-2 after:border-r-2 after:rotate-45"
                                         />
                                         <h3 className={`text-sm text-neutral-800 ${goal.status === 'completed' ? 'line-through opacity-60' : ''}`}>
                                             {goal.title}
@@ -135,7 +135,7 @@ const StudentGoals = () => {
                                     </button>
                                 </div>
 
-                                <div className=" flex justify-end">
+                                <div className="mt-2 flex justify-end">
                                     <span className="bg-white text-neutral-600 px-3 py-1 rounded-full text-xs inline-flex items-center gap-2">
                                         متبقي 12 يوم
                                     </span>

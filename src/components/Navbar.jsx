@@ -10,11 +10,18 @@ import { IoBookOutline } from "react-icons/io5";
 import { HiMiniChevronUpDown } from "react-icons/hi2";
 import ProfileModal from './teacher/ProfileModal';
 import StudentProfileModal from './student/StudentProfileModal';
+import StudentFireModal from './student/StudentFireModal';
+import StudentInvitationModal from './student/StudentInvitationModal';
+import StudentChatPanel from './student/StudentChatPanel';
+import { PiPencilSimpleLight } from "react-icons/pi";
 
 import logo from '../assets/logo.svg';
 const Navbar = ({ role = 'student' }) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+    const [isFireModalOpen, setIsFireModalOpen] = useState(false);
+    const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
+    const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
     const logoRef = useRef(null);
     const navRef = useRef(null);
     const location = useLocation();
@@ -68,6 +75,9 @@ const Navbar = ({ role = 'student' }) => {
                 return [
                     { name: 'لوحة التحكم', path: '/student', icon: FiHome },
                     { name: 'الأهداف', path: '/student/goals', icon: FiSettings },
+                    { name: 'الواجبات', path: '/student/assignments', icon: PiPencilSimpleLight },
+                    { name: 'الاختبارات', path: '/student/exams', icon: PiExam },
+                    { name: 'الحضور والغياب', path: '/student/attendance', icon: FaUserCheck },
                 ];
         }
     };
@@ -171,16 +181,25 @@ const Navbar = ({ role = 'student' }) => {
                     <div className="flex items-center gap-2">
                         {role === 'student' && (
                             <>
-                                <div className="flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full">
+                                <button
+                                    onClick={() => setIsFireModalOpen(true)}
+                                    className="flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full hover:bg-orange-200 transition-colors"
+                                >
                                     <PiFireLight className="w-5 h-5" />
                                     <span className="text-sm font-bold">3 أيام</span>
-                                </div>
+                                </button>
                                 {location.pathname === '/student' && (
                                     <>
-                                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                        <button
+                                            onClick={() => setIsChatPanelOpen(true)}
+                                            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                        >
                                             <PiChatTeardropDots className="w-6 h-6 text-gray-700" />
                                         </button>
-                                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                        <button
+                                            onClick={() => setIsInvitationModalOpen(true)}
+                                            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                        >
                                             <PiUserCirclePlus className="w-6 h-6 text-gray-700" />
                                         </button>
                                     </>
@@ -191,6 +210,24 @@ const Navbar = ({ role = 'student' }) => {
                             <FiBell className="w-5 h-5 text-gray-700" />
                             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                         </button>
+
+                        {/* Student Fire Modal */}
+                        <StudentFireModal
+                            isOpen={isFireModalOpen}
+                            onClose={() => setIsFireModalOpen(false)}
+                        />
+
+                        {/* Student Invitation Modal */}
+                        <StudentInvitationModal
+                            isOpen={isInvitationModalOpen}
+                            onClose={() => setIsInvitationModalOpen(false)}
+                        />
+
+                        {/* Student Chat Panel */}
+                        <StudentChatPanel
+                            isOpen={isChatPanelOpen}
+                            onClose={() => setIsChatPanelOpen(false)}
+                        />
                     </div>
 
                 </div>

@@ -6,7 +6,7 @@ import { RiProfileLine } from "react-icons/ri";
 import { FaUserGraduate } from "react-icons/fa";
 import { IoIosStats } from "react-icons/io";
 import { PiPencilSimpleLight, PiExam } from "react-icons/pi";
-import { FaExternalLinkAlt, FaEye, FaCalendarAlt } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { LuNotebookText } from "react-icons/lu";
 
 import Card from '../../components/Card';

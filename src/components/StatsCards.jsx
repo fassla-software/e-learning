@@ -17,7 +17,7 @@ const StatsCards = ({ title, titleIcon: TitleIcon, stats }) => {
                             </div>
                             <div className="flex-1 min-w-0">
                                 <span className="text-neutral-800 text-base block">{stat.label}</span>
-                                <p className="text-2xl font-bold text-neutral-800">{stat.value}</p>
+                                <div className="text-2xl font-bold text-neutral-800">{stat.value}</div>
                             </div>
                         </div>
                     );
