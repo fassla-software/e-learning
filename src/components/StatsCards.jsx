@@ -1,4 +1,4 @@
-const StatsCards = ({ title, titleIcon: TitleIcon, stats }) => {
+const StatsCards = ({ title, titleIcon: TitleIcon, stats, gridCols = "md:grid-cols-3" }) => {
     return (
         <div>
             {title && (
@@ -7,7 +7,7 @@ const StatsCards = ({ title, titleIcon: TitleIcon, stats }) => {
                     {TitleIcon && <TitleIcon />}
                 </div>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className={`grid grid-cols-1 ${gridCols} gap-6 mb-8`}>
                 {stats.map((stat, index) => {
                     const Icon = stat.icon;
                     return (

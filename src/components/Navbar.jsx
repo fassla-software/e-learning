@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { FiHome, FiUsers, FiBook, FiSettings, FiChevronDown, FiBell, FiFileText } from 'react-icons/fi';
 import { VscChecklist } from 'react-icons/vsc';
 import { FaUserCheck } from 'react-icons/fa';
-import { PiExam, PiVideoLight, PiUserCirclePlus, PiChatTeardropDots, PiFireLight } from 'react-icons/pi';
+import { PiExam, PiVideoLight, PiUserCirclePlus, PiChatTeardropDots, PiFireLight, PiNewspaperClipping } from 'react-icons/pi';
 import { FaChalkboard } from "react-icons/fa";
 import { FaUserGraduate } from "react-icons/fa6";
 import { IoBookOutline } from "react-icons/io5";
@@ -77,6 +77,9 @@ const Navbar = ({ role = 'student' }) => {
                     { name: 'الأهداف', path: '/student/goals', icon: FiSettings },
                     { name: 'الواجبات', path: '/student/assignments', icon: PiPencilSimpleLight },
                     { name: 'الاختبارات', path: '/student/exams', icon: PiExam },
+                    { name: 'الدورات', path: '/student/courses', icon: PiNewspaperClipping },
+                    { name: 'المناهج', path: '/student/curricula', icon: IoBookOutline },
+                    { name: 'البثوث', path: '/student/broadcasts', icon: PiVideoLight },
                     { name: 'الحضور والغياب', path: '/student/attendance', icon: FaUserCheck },
                 ];
         }
