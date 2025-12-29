@@ -5,13 +5,28 @@ import Card from '../../components/Card';
 const BookPlacementTest = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
 
-    const timeSlots = Array.from({ length: 20 }, (_, i) => {
-        const hour = 1 + Math.floor(i / 2);
-        const minute = i % 2 === 0 ? '00' : '30';
-        const period = hour >= 12 ? 'مساءً' : 'صباحًا';
-        const displayHour = hour > 12 ? hour - 12 : hour;
-        return `${displayHour}:${minute} ${period}`;
-    });
+    const timeSlots = [
+        { time: '6:00 صباحًا', reserved: false },
+        { time: '7:00 صباحًا', reserved: true },
+        { time: '8:00 صباحًا', reserved: false },
+        { time: '9:00 صباحًا', reserved: false },
+        { time: '10:00 صباحًا', reserved: true },
+        { time: '11:00 صباحًا', reserved: false },
+        { time: '12:00 مساءً', reserved: false },
+        { time: '1:00 مساءً', reserved: false },
+        { time: '2:00 مساءً', reserved: false },
+        { time: '3:00 مساءً', reserved: true },
+        { time: '4:00 مساءً', reserved: false },
+        { time: '5:00 مساءً', reserved: false },
+        { time: '6:00 مساءً', reserved: false },
+        { time: '7:00 مساءً', reserved: false },
+        { time: '8:00 مساءً', reserved: false },
+        { time: '9:00 مساءً', reserved: false },
+        { time: '10:00 مساءً', reserved: false },
+        { time: '11:00 مساءً', reserved: false },
+        { time: '12:00 مساءً', reserved: false },
+        { time: '1:00 مساء', reserved: false }
+    ];
 
     return (
         <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
@@ -72,21 +87,45 @@ const BookPlacementTest = () => {
                 {/* Right Section - 8 cols */}
                 <div className="lg:col-span-8">
                     <div className="p-8">
-                        <h3 className="text-xl font-bold text-neutral-800 mb-6">المواعيد المتاحة</h3>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                            {timeSlots.map((slot, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setSelectedSlot(slot)}
-                                    className={`flex flex-col items-start justify-center gap-2 py-4 px-4 rounded-xl border-2 transition-all text-center font-medium ${selectedSlot === slot
-                                        ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
-                                        : 'border-transparent bg-neutral-50 hover:border-indigo-200 text-neutral-600'
-                                        }`}
-                                >
-                                    <FaRegClock className={`${selectedSlot === slot ? 'text-indigo-600' : 'text-neutral-400'} text-lg`} />
-                                    <span className="text-sm">{slot}</span>
-                                </button>
-                            ))}
+                            {timeSlots.map((slot, index) => {
+                                const isSelected = selectedSlot === slot.time;
+                                const isReserved = slot.reserved;
+
+                                return (
+                                    <button
+                                        key={index}
+                                        disabled={isReserved}
+                                        onClick={() => setSelectedSlot(slot.time)}
+                                        className={`flex flex-col items-start justify-center gap-2 p-2 rounded-xl transition-all text-center font-medium ${isSelected
+                                            ? 'bg-emerald-100 text-emerald-600'
+                                            : isReserved
+                                                ? 'border-transparent bg-orange-100 text-orange-600 cursor-not-allowed'
+                                                : 'border-transparent bg-neutral-50 hover:border-indigo-200 text-neutral-600'
+                                            }`}
+                                    >
+                                        <div className="flex items-center justify-between w-full mb-1">
+                                            {isSelected ? (
+                                                <FaCheck className="text-emerald-600 text-lg" />
+                                            ) : (
+                                                <FaRegClock className={`${isReserved ? 'text-orange-600' : 'text-indigo-600'} text-lg`} />
+                                            )}
+
+                                            {isSelected && (
+                                                <span className="bg-white text-neutral-800 text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">
+                                                    مختار
+                                                </span>
+                                            )}
+                                            {isReserved && (
+                                                <span className="bg-white text-neutral-800 text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">
+                                                    محجوز
+                                                </span>
+                                            )}
+                                        </div>
+                                        <span className="text-xl font-bold">{slot.time}</span>
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
