@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import examData from '../../data/exam_data.json';
 import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
+import SubmitExamModal from '../../components/student/SubmitExamModal';
+import ExamResultModal from '../../components/student/ExamResultModal';
+import ExamWarningModal from '../../components/student/ExamWarningModal';
 
 const TakeExam = () => {
     const { id } = useParams();
@@ -9,6 +12,10 @@ const TakeExam = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [timeLeft, setTimeLeft] = useState(examData.duration * 60); // in seconds
+    const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+    const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+    const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -44,10 +51,33 @@ const TakeExam = () => {
         if (currentQuestionIndex < totalQuestions - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            // Submit exam logic
-            alert('تم تسليم الاختبار بنجاح!');
-            navigate('/student/exams');
+            // Validate all questions answered
+            if (Object.keys(selectedAnswers).length !== totalQuestions) {
+                setIsWarningModalOpen(true);
+                return;
+            }
+            // Open submit modal
+            setIsSubmitModalOpen(true);
         }
+    };
+
+    const handleConfirmSubmit = () => {
+        // Calculate score
+        let calculatedScore = 0;
+        examData.questions.forEach((q, index) => {
+            if (selectedAnswers[index] === q.correctAnswer) {
+                calculatedScore++;
+            }
+        });
+        setScore(calculatedScore);
+
+        setIsSubmitModalOpen(false);
+        setIsResultModalOpen(true);
+    };
+
+    const handleCloseResult = () => {
+        setIsResultModalOpen(false);
+        navigate('/student/exams');
     };
 
     const handlePrevious = () => {
@@ -127,7 +157,25 @@ const TakeExam = () => {
                     {currentQuestionIndex === totalQuestions - 1 ? 'إنهاء الاختبار' : 'التالي'}
                 </button>
             </div>
-        </div>
+
+            <SubmitExamModal
+                isOpen={isSubmitModalOpen}
+                onClose={() => setIsSubmitModalOpen(false)}
+                onConfirm={handleConfirmSubmit}
+            />
+
+            <ExamResultModal
+                isOpen={isResultModalOpen}
+                onClose={handleCloseResult}
+                score={score}
+                totalQuestions={totalQuestions}
+            />
+
+            <ExamWarningModal
+                isOpen={isWarningModalOpen}
+                onClose={() => setIsWarningModalOpen(false)}
+            />
+        </div >
     );
 };
 

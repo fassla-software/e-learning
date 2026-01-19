@@ -12,6 +12,10 @@ import Broadcasts from '../pages/student/Broadcasts';
 import Curricula from '../pages/student/Curricula';
 import CurriculumViewer from '../pages/student/CurriculumViewer';
 import BookPlacementTest from '../pages/student/BookPlacementTest';
+import MyCourses from '../pages/student/MyCourses';
+import MyCourseDetails from '../pages/student/MyCourseDetails';
+import CoursePlayer from '../pages/student/CoursePlayer';
+import BroadcastRoom from '../pages/student/BroadcastRoom';
 export const studentRoutes = {
   path: "/student",
   element: <Layout role="student" />,
@@ -25,7 +29,11 @@ export const studentRoutes = {
     { path: "exams/take/:id", element: <TakeExam /> },
     { path: "courses", element: <Courses /> },
     { path: "courses/:id", element: <CourseDetails /> },
+    { path: "my-courses", element: <MyCourses /> },
+    { path: "my-courses/:id", element: <MyCourseDetails /> },
+    { path: "my-courses/:id/learn", element: <CoursePlayer /> },
     { path: "broadcasts", element: <Broadcasts /> },
+    { path: "broadcasts/:id", element: <BroadcastRoom /> },
     { path: "curricula", element: <Curricula /> },
     { path: "curricula/view/:id", element: <CurriculumViewer /> },
     { path: "placement-test/book", element: <BookPlacementTest /> },

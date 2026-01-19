@@ -8,8 +8,14 @@ import { IoIosStats } from "react-icons/io";
 import { PiPencilSimpleLight, PiExam } from "react-icons/pi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { LuNotebookText } from "react-icons/lu";
+import { PiShootingStar } from "react-icons/pi";
+import { GoNote } from "react-icons/go";
+import { TfiStatsUp } from "react-icons/tfi";
+import { TbLayoutAlignMiddle } from "react-icons/tb";
+import { VscPercentage } from "react-icons/vsc";
 
 import Card from '../../components/Card';
+import ProgressBar from '../../components/ProgressBar';
 
 const StudentDashboard = () => {
     const [activeTab, setActiveTab] = useState('الواجبات');
@@ -37,13 +43,58 @@ const StudentDashboard = () => {
         }
     ];
 
+    const examStats = [
+        {
+            label: "أفضل درجة",
+            value: "20 / 20",
+            icon: PiShootingStar,
+            iconBg: "",
+            iconColor: "text-emerald-600"
+        },
+        {
+            label: "متوسط الدرجات",
+            value: "19.15 / 20",
+            icon: TbLayoutAlignMiddle,
+            iconBg: "",
+            iconColor: "text-sky-600 text-4xl"
+        },
+        {
+            label: "أفضل مادة من حيث الدرجة",
+            value: "اللغة الإنجليزية، 20 / 20",
+            icon: GoNote,
+            iconBg: "",
+            iconColor: "text-orange-600"
+        }
+    ];
+
     return (
         <div className="space-y-8 p-6">
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                {/* Calendar Section - 3 columns */}
+                {/* Stats Section - 3 columns */}
                 <div className="lg:col-span-3">
-                    <Calendar />
+                    <div className="p-6">
+                        <div className="flex justify-between items-center mb-6 text-emerald-600">
+                            <h3 className="text-xl font-bold ">نسبة التقدم دراسيًا</h3>
+                            <VscPercentage className=" text-2xl" />
+                        </div>
+                        <p className="text-neutral-600 text-base mb-2"><span className="font-bold text-4xl">73</span> يوم</p>
+                        <div className="mb-8">
+                            <ProgressBar
+                                percentage={20}
+                                color="bg-emerald-600"
+                                bgColor="bg-white"
+                                width="w-full"
+                                height="h-6"
+                                textInside="20%"
+                            />
+                        </div>
+
+                        <StatsCards
+                            stats={examStats}
+                            gridCols="grid-cols-1"
+                        />
+                    </div>
                 </div>
 
                 {/* Main Content Section - 9 columns */}
@@ -55,8 +106,8 @@ const StudentDashboard = () => {
                         <button
                             onClick={() => setActiveTab('الواجبات')}
                             className={`px-4 flex gap-2 items-center py-2 rounded-full transition-colors ${activeTab === 'الواجبات'
-                                    ? 'bg-blue-200 text-blue-800'
-                                    : 'hover:bg-blue-100'
+                                ? 'bg-blue-200 text-blue-800'
+                                : 'hover:bg-blue-100'
                                 }`}
                         >
                             <PiPencilSimpleLight />الواجبات
@@ -64,8 +115,8 @@ const StudentDashboard = () => {
                         <button
                             onClick={() => setActiveTab('الإختبارات')}
                             className={`px-4 flex gap-2 items-center py-2 rounded-full transition-colors ${activeTab === 'الإختبارات'
-                                    ? 'bg-blue-200 text-blue-800'
-                                    : 'hover:bg-blue-100'
+                                ? 'bg-blue-200 text-blue-800'
+                                : 'hover:bg-blue-100'
                                 }`}
                         >
                             <PiExam />الإختبارات
@@ -79,7 +130,7 @@ const StudentDashboard = () => {
                                     <div className="flex justify-between items-center">
                                         <p className="text-neutral-600">2510281001</p>
                                         <div className="flex gap-2">
-                                            
+
                                             <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-200">
                                                 <FaExternalLinkAlt className="text-gray-600" />
                                             </button>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { FiHome, FiUsers, FiBook, FiSettings, FiChevronDown, FiBell, FiFileText } from 'react-icons/fi';
 import { VscChecklist } from 'react-icons/vsc';
 import { FaUserCheck } from 'react-icons/fa';
-import { PiExam, PiVideoLight, PiUserCirclePlus, PiChatTeardropDots, PiFireLight, PiNewspaperClipping } from 'react-icons/pi';
+import { PiExam, PiVideoLight, PiUserCirclePlus, PiChatTeardropDots, PiFireLight, PiNewspaperClipping, PiNotebook } from 'react-icons/pi';
 import { FaChalkboard } from "react-icons/fa";
 import { FaUserGraduate } from "react-icons/fa6";
 import { IoBookOutline } from "react-icons/io5";
@@ -13,6 +13,7 @@ import StudentProfileModal from './student/StudentProfileModal';
 import StudentFireModal from './student/StudentFireModal';
 import StudentInvitationModal from './student/StudentInvitationModal';
 import StudentChatPanel from './student/StudentChatPanel';
+import NotificationModal from './NotificationModal';
 import { PiPencilSimpleLight } from "react-icons/pi";
 
 import logo from '../assets/logo.svg';
@@ -22,8 +23,10 @@ const Navbar = ({ role = 'student' }) => {
     const [isFireModalOpen, setIsFireModalOpen] = useState(false);
     const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
     const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
+    const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
     const logoRef = useRef(null);
     const navRef = useRef(null);
+    const notificationRef = useRef(null);
     const location = useLocation();
 
     useEffect(() => {
@@ -77,6 +80,7 @@ const Navbar = ({ role = 'student' }) => {
                     { name: 'الأهداف', path: '/student/goals', icon: FiSettings },
                     { name: 'الواجبات', path: '/student/assignments', icon: PiPencilSimpleLight },
                     { name: 'الاختبارات', path: '/student/exams', icon: PiExam },
+                    { name: 'الدروس والمحتوى', path: '/student/my-courses', icon: PiNotebook },
                     { name: 'الدورات', path: '/student/courses', icon: PiNewspaperClipping },
                     { name: 'المناهج', path: '/student/curricula', icon: IoBookOutline },
                     { name: 'البثوث', path: '/student/broadcasts', icon: PiVideoLight },
@@ -209,10 +213,20 @@ const Navbar = ({ role = 'student' }) => {
                                 )}
                             </>
                         )}
-                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
-                            <FiBell className="w-5 h-5 text-gray-700" />
-                            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                        </button>
+                        <div className="relative" ref={notificationRef}>
+                            <button
+                                onClick={() => setIsNotificationModalOpen(!isNotificationModalOpen)}
+                                className="p-2 hover:bg-gray-100 rounded-full transition-colors relative"
+                            >
+                                <FiBell className="w-5 h-5 text-gray-700" />
+                                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                            </button>
+                            <NotificationModal
+                                isOpen={isNotificationModalOpen}
+                                onClose={() => setIsNotificationModalOpen(false)}
+                                triggerRef={notificationRef}
+                            />
+                        </div>
 
                         {/* Student Fire Modal */}
                         <StudentFireModal
